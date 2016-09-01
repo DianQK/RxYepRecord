@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2670FC701D780435005A8D0B /* AudioBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC6C1D780435005A8D0B /* AudioBot.swift */; };
+		2670FC711D780435005A8D0B /* AVAudioSession+AudioBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC6D1D780435005A8D0B /* AVAudioSession+AudioBot.swift */; };
+		2670FC721D780435005A8D0B /* NSFileManager+AudioBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC6E1D780435005A8D0B /* NSFileManager+AudioBot.swift */; };
+		2670FC731D780435005A8D0B /* Proposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC6F1D780435005A8D0B /* Proposer.swift */; };
+		2670FC751D780881005A8D0B /* SafeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC741D780881005A8D0B /* SafeCollection.swift */; };
+		2670FC771D780C1E005A8D0B /* YepConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC761D780C1E005A8D0B /* YepConfig.swift */; };
+		2670FC791D780C83005A8D0B /* UIFont+Yep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC781D780C83005A8D0B /* UIFont+Yep.swift */; };
+		2670FC7B1D780D33005A8D0B /* UIColor+Yep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC7A1D780D33005A8D0B /* UIColor+Yep.swift */; };
+		2670FC7D1D780ECB005A8D0B /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC7C1D780ECB005A8D0B /* RecordButton.swift */; };
+		2670FC7F1D7810EE005A8D0B /* YepAudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC7E1D7810EE005A8D0B /* YepAudioService.swift */; };
+		2670FC811D781447005A8D0B /* YepAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2670FC801D781447005A8D0B /* YepAlert.swift */; };
+		2677DDE91D78191A00FC4109 /* HorizontalLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677DDE81D78191A00FC4109 /* HorizontalLineView.swift */; };
+		2677DDEB1D781ECE00FC4109 /* NewFeedVoiceRecord.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2677DDEA1D781ECE00FC4109 /* NewFeedVoiceRecord.storyboard */; };
+		26EEDB631D77ECAE00D4D736 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EEDB621D77ECAE00D4D736 /* AppDelegate.swift */; };
+		26EEDB681D77ECAE00D4D736 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26EEDB661D77ECAE00D4D736 /* Main.storyboard */; };
+		26EEDB6A1D77ECAE00D4D736 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26EEDB691D77ECAE00D4D736 /* Assets.xcassets */; };
+		26EEDB6D1D77ECAE00D4D736 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26EEDB6B1D77ECAE00D4D736 /* LaunchScreen.storyboard */; };
+		26EEDB781D77ECE000D4D736 /* RxAutomaton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EEDB741D77ECE000D4D736 /* RxAutomaton.framework */; };
+		26EEDB791D77ECE000D4D736 /* RxAutomaton.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26EEDB741D77ECE000D4D736 /* RxAutomaton.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		26EEDB7A1D77ECE000D4D736 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EEDB751D77ECE000D4D736 /* RxSwift.framework */; };
+		26EEDB7B1D77ECE000D4D736 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26EEDB751D77ECE000D4D736 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		26EEDB7C1D77ECE000D4D736 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EEDB761D77ECE000D4D736 /* RxCocoa.framework */; };
+		26EEDB7D1D77ECE000D4D736 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26EEDB761D77ECE000D4D736 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		26EEDB7E1D77ECE000D4D736 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EEDB771D77ECE000D4D736 /* Rswift.framework */; };
+		26EEDB7F1D77ECE000D4D736 /* Rswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26EEDB771D77ECE000D4D736 /* Rswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		26EEDB831D77ED4500D4D736 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EEDB821D77ED4500D4D736 /* R.generated.swift */; };
+		26EEDB8D1D77EEF500D4D736 /* SampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EEDB861D77EEF500D4D736 /* SampleView.swift */; };
+		26EEDB8E1D77EEF500D4D736 /* VoiceRecordSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EEDB871D77EEF500D4D736 /* VoiceRecordSampleView.swift */; };
+		26EEDB8F1D77EEF500D4D736 /* Waver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EEDB881D77EEF500D4D736 /* Waver.swift */; };
+		26EEDB901D77EEF500D4D736 /* YepWaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EEDB891D77EEF500D4D736 /* YepWaverView.swift */; };
+		26EEDB921D77EEF500D4D736 /* NewFeedVoiceRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EEDB8C1D77EEF500D4D736 /* NewFeedVoiceRecordViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		26EEDB801D77ECE100D4D736 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				26EEDB7D1D77ECE000D4D736 /* RxCocoa.framework in Embed Frameworks */,
+				26EEDB7B1D77ECE000D4D736 /* RxSwift.framework in Embed Frameworks */,
+				26EEDB791D77ECE000D4D736 /* RxAutomaton.framework in Embed Frameworks */,
+				26EEDB7F1D77ECE000D4D736 /* Rswift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2670FC6C1D780435005A8D0B /* AudioBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioBot.swift; sourceTree = "<group>"; };
+		2670FC6D1D780435005A8D0B /* AVAudioSession+AudioBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVAudioSession+AudioBot.swift"; sourceTree = "<group>"; };
+		2670FC6E1D780435005A8D0B /* NSFileManager+AudioBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+AudioBot.swift"; sourceTree = "<group>"; };
+		2670FC6F1D780435005A8D0B /* Proposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Proposer.swift; sourceTree = "<group>"; };
+		2670FC741D780881005A8D0B /* SafeCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeCollection.swift; sourceTree = "<group>"; };
+		2670FC761D780C1E005A8D0B /* YepConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YepConfig.swift; sourceTree = "<group>"; };
+		2670FC781D780C83005A8D0B /* UIFont+Yep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Yep.swift"; sourceTree = "<group>"; };
+		2670FC7A1D780D33005A8D0B /* UIColor+Yep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Yep.swift"; sourceTree = "<group>"; };
+		2670FC7C1D780ECB005A8D0B /* RecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
+		2670FC7E1D7810EE005A8D0B /* YepAudioService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YepAudioService.swift; sourceTree = "<group>"; };
+		2670FC801D781447005A8D0B /* YepAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YepAlert.swift; sourceTree = "<group>"; };
+		2677DDE81D78191A00FC4109 /* HorizontalLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalLineView.swift; sourceTree = "<group>"; };
+		2677DDEA1D781ECE00FC4109 /* NewFeedVoiceRecord.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeedVoiceRecord.storyboard; sourceTree = "<group>"; };
+		26EEDB5F1D77ECAE00D4D736 /* RxYepRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxYepRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		26EEDB621D77ECAE00D4D736 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		26EEDB671D77ECAE00D4D736 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		26EEDB691D77ECAE00D4D736 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		26EEDB6C1D77ECAE00D4D736 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		26EEDB6E1D77ECAE00D4D736 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26EEDB741D77ECE000D4D736 /* RxAutomaton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxAutomaton.framework; path = Carthage/Build/iOS/RxAutomaton.framework; sourceTree = "<group>"; };
+		26EEDB751D77ECE000D4D736 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		26EEDB761D77ECE000D4D736 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		26EEDB771D77ECE000D4D736 /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rswift.framework; path = Carthage/Build/iOS/Rswift.framework; sourceTree = "<group>"; };
+		26EEDB821D77ED4500D4D736 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		26EEDB861D77EEF500D4D736 /* SampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleView.swift; sourceTree = "<group>"; };
+		26EEDB871D77EEF500D4D736 /* VoiceRecordSampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRecordSampleView.swift; sourceTree = "<group>"; };
+		26EEDB881D77EEF500D4D736 /* Waver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waver.swift; sourceTree = "<group>"; };
+		26EEDB891D77EEF500D4D736 /* YepWaverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YepWaverView.swift; sourceTree = "<group>"; };
+		26EEDB8C1D77EEF500D4D736 /* NewFeedVoiceRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeedVoiceRecordViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26EEDB5C1D77ECAE00D4D736 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26EEDB7C1D77ECE000D4D736 /* RxCocoa.framework in Frameworks */,
+				26EEDB7A1D77ECE000D4D736 /* RxSwift.framework in Frameworks */,
+				26EEDB781D77ECE000D4D736 /* RxAutomaton.framework in Frameworks */,
+				26EEDB7E1D77ECE000D4D736 /* Rswift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2670FC6A1D780435005A8D0B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2670FC7E1D7810EE005A8D0B /* YepAudioService.swift */,
+				2670FC7A1D780D33005A8D0B /* UIColor+Yep.swift */,
+				2670FC801D781447005A8D0B /* YepAlert.swift */,
+				2670FC781D780C83005A8D0B /* UIFont+Yep.swift */,
+				2670FC761D780C1E005A8D0B /* YepConfig.swift */,
+				2670FC741D780881005A8D0B /* SafeCollection.swift */,
+				2670FC6B1D780435005A8D0B /* AudioBot */,
+				2670FC6F1D780435005A8D0B /* Proposer.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		2670FC6B1D780435005A8D0B /* AudioBot */ = {
+			isa = PBXGroup;
+			children = (
+				2670FC6C1D780435005A8D0B /* AudioBot.swift */,
+				2670FC6D1D780435005A8D0B /* AVAudioSession+AudioBot.swift */,
+				2670FC6E1D780435005A8D0B /* NSFileManager+AudioBot.swift */,
+			);
+			path = AudioBot;
+			sourceTree = "<group>";
+		};
+		26EEDB561D77ECAD00D4D736 = {
+			isa = PBXGroup;
+			children = (
+				26EEDB741D77ECE000D4D736 /* RxAutomaton.framework */,
+				26EEDB751D77ECE000D4D736 /* RxSwift.framework */,
+				26EEDB761D77ECE000D4D736 /* RxCocoa.framework */,
+				26EEDB771D77ECE000D4D736 /* Rswift.framework */,
+				26EEDB611D77ECAE00D4D736 /* RxYepRecord */,
+				26EEDB601D77ECAE00D4D736 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		26EEDB601D77ECAE00D4D736 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26EEDB5F1D77ECAE00D4D736 /* RxYepRecord.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		26EEDB611D77ECAE00D4D736 /* RxYepRecord */ = {
+			isa = PBXGroup;
+			children = (
+				2670FC6A1D780435005A8D0B /* Utils */,
+				26EEDB841D77EEF500D4D736 /* Views */,
+				26EEDB8A1D77EEF500D4D736 /* NewFeedVoiceRecord */,
+				26EEDB821D77ED4500D4D736 /* R.generated.swift */,
+				26EEDB621D77ECAE00D4D736 /* AppDelegate.swift */,
+				26EEDB661D77ECAE00D4D736 /* Main.storyboard */,
+				26EEDB691D77ECAE00D4D736 /* Assets.xcassets */,
+				26EEDB6B1D77ECAE00D4D736 /* LaunchScreen.storyboard */,
+				26EEDB6E1D77ECAE00D4D736 /* Info.plist */,
+			);
+			path = RxYepRecord;
+			sourceTree = "<group>";
+		};
+		26EEDB841D77EEF500D4D736 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2677DDE81D78191A00FC4109 /* HorizontalLineView.swift */,
+				2670FC7C1D780ECB005A8D0B /* RecordButton.swift */,
+				26EEDB851D77EEF500D4D736 /* AudioWaves */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		26EEDB851D77EEF500D4D736 /* AudioWaves */ = {
+			isa = PBXGroup;
+			children = (
+				26EEDB861D77EEF500D4D736 /* SampleView.swift */,
+				26EEDB871D77EEF500D4D736 /* VoiceRecordSampleView.swift */,
+				26EEDB881D77EEF500D4D736 /* Waver.swift */,
+				26EEDB891D77EEF500D4D736 /* YepWaverView.swift */,
+			);
+			path = AudioWaves;
+			sourceTree = "<group>";
+		};
+		26EEDB8A1D77EEF500D4D736 /* NewFeedVoiceRecord */ = {
+			isa = PBXGroup;
+			children = (
+				2677DDEA1D781ECE00FC4109 /* NewFeedVoiceRecord.storyboard */,
+				26EEDB8C1D77EEF500D4D736 /* NewFeedVoiceRecordViewController.swift */,
+			);
+			path = NewFeedVoiceRecord;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		26EEDB5E1D77ECAE00D4D736 /* RxYepRecord */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26EEDB711D77ECAE00D4D736 /* Build configuration list for PBXNativeTarget "RxYepRecord" */;
+			buildPhases = (
+				26EEDB811D77ECE700D4D736 /* Run R */,
+				26EEDB5B1D77ECAE00D4D736 /* Sources */,
+				26EEDB5C1D77ECAE00D4D736 /* Frameworks */,
+				26EEDB5D1D77ECAE00D4D736 /* Resources */,
+				26EEDB801D77ECE100D4D736 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RxYepRecord;
+			productName = RxYepRecord;
+			productReference = 26EEDB5F1D77ECAE00D4D736 /* RxYepRecord.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		26EEDB571D77ECAE00D4D736 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = T;
+				TargetAttributes = {
+					26EEDB5E1D77ECAE00D4D736 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 9Y9KG3KBHJ;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 26EEDB5A1D77ECAE00D4D736 /* Build configuration list for PBXProject "RxYepRecord" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 26EEDB561D77ECAD00D4D736;
+			productRefGroup = 26EEDB601D77ECAE00D4D736 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26EEDB5E1D77ECAE00D4D736 /* RxYepRecord */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		26EEDB5D1D77ECAE00D4D736 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26EEDB6D1D77ECAE00D4D736 /* LaunchScreen.storyboard in Resources */,
+				26EEDB6A1D77ECAE00D4D736 /* Assets.xcassets in Resources */,
+				26EEDB681D77ECAE00D4D736 /* Main.storyboard in Resources */,
+				2677DDEB1D781ECE00FC4109 /* NewFeedVoiceRecord.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26EEDB811D77ECE700D4D736 /* Run R */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run R";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT/rswift\" \"$SRCROOT/RxYepRecord/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		26EEDB5B1D77ECAE00D4D736 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26EEDB8D1D77EEF500D4D736 /* SampleView.swift in Sources */,
+				2670FC711D780435005A8D0B /* AVAudioSession+AudioBot.swift in Sources */,
+				2670FC7B1D780D33005A8D0B /* UIColor+Yep.swift in Sources */,
+				2670FC7F1D7810EE005A8D0B /* YepAudioService.swift in Sources */,
+				2670FC721D780435005A8D0B /* NSFileManager+AudioBot.swift in Sources */,
+				2670FC791D780C83005A8D0B /* UIFont+Yep.swift in Sources */,
+				2670FC811D781447005A8D0B /* YepAlert.swift in Sources */,
+				2670FC751D780881005A8D0B /* SafeCollection.swift in Sources */,
+				2677DDE91D78191A00FC4109 /* HorizontalLineView.swift in Sources */,
+				2670FC731D780435005A8D0B /* Proposer.swift in Sources */,
+				26EEDB8F1D77EEF500D4D736 /* Waver.swift in Sources */,
+				2670FC701D780435005A8D0B /* AudioBot.swift in Sources */,
+				26EEDB921D77EEF500D4D736 /* NewFeedVoiceRecordViewController.swift in Sources */,
+				2670FC7D1D780ECB005A8D0B /* RecordButton.swift in Sources */,
+				26EEDB631D77ECAE00D4D736 /* AppDelegate.swift in Sources */,
+				26EEDB901D77EEF500D4D736 /* YepWaverView.swift in Sources */,
+				26EEDB831D77ED4500D4D736 /* R.generated.swift in Sources */,
+				2670FC771D780C1E005A8D0B /* YepConfig.swift in Sources */,
+				26EEDB8E1D77EEF500D4D736 /* VoiceRecordSampleView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		26EEDB661D77ECAE00D4D736 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26EEDB671D77ECAE00D4D736 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		26EEDB6B1D77ECAE00D4D736 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26EEDB6C1D77ECAE00D4D736 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		26EEDB6F1D77ECAE00D4D736 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		26EEDB701D77ECAE00D4D736 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		26EEDB721D77ECAE00D4D736 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9Y9KG3KBHJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = RxYepRecord/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = gg.swift.t.RxYepRecord;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		26EEDB731D77ECAE00D4D736 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9Y9KG3KBHJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = RxYepRecord/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = gg.swift.t.RxYepRecord;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26EEDB5A1D77ECAE00D4D736 /* Build configuration list for PBXProject "RxYepRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26EEDB6F1D77ECAE00D4D736 /* Debug */,
+				26EEDB701D77ECAE00D4D736 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26EEDB711D77ECAE00D4D736 /* Build configuration list for PBXNativeTarget "RxYepRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26EEDB721D77ECAE00D4D736 /* Debug */,
+				26EEDB731D77ECAE00D4D736 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 26EEDB571D77ECAE00D4D736 /* Project object */;
+}

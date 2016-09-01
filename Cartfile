@@ -1,0 +1,6 @@
+github "ReactiveX/RxSwift" ~>3.0
+github "Alamofire/Alamofire" "swift3"
+github "mac-cain13/R.swift.Library" ~>3.0
+github "RxSwiftCommunity/RxDataSources" ~>1.0
+github "DianQK/SwiftyJSON" "swift3"
+github "DianQK/RxAutomaton" "swift3"

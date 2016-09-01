@@ -26,7 +26,7 @@ final class SampleView: UIView {
         }
     }
 
-    let sampleWidth: CGFloat = YepConfig.audioSampleWidth()
+    let sampleWidth = YepConfig.audioSampleWidth()
     let sampleGap = YepConfig.audioSampleGap()
 
     lazy var playedWaveLayer: CAShapeLayer = {

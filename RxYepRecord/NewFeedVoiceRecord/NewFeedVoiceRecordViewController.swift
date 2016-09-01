@@ -19,6 +19,15 @@ struct FeedVoice {
     let limitedSampleValues: [CGFloat]
 }
 
+let allowAll: ((Any) -> Bool) = { _ in
+    return true
+}
+
+func empty<T>() -> ((T) -> Void) {
+    return { _ in
+    }
+}
+
 struct Message {
     public var imageFileURL: URL?
     public var videoFileURL: URL?
@@ -26,60 +35,22 @@ struct Message {
 
 final class NewFeedVoiceRecordViewController: UIViewController {
 
-    @IBOutlet fileprivate weak var cancelButton: UIBarButtonItem!
-    @IBOutlet fileprivate weak var nextButton: UIBarButtonItem!
+    @IBOutlet private weak var cancelButton: UIBarButtonItem!
+    @IBOutlet private weak var nextButton: UIBarButtonItem!
 
-    @IBOutlet fileprivate weak var voiceRecordSampleView: VoiceRecordSampleView!
-    @IBOutlet fileprivate weak var voiceIndicatorImageView: UIImageView!
-    @IBOutlet fileprivate weak var voiceIndicatorImageViewCenterXConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var voiceRecordSampleView: VoiceRecordSampleView!
+    @IBOutlet private weak var voiceIndicatorImageView: UIImageView!
+    @IBOutlet private weak var voiceIndicatorImageViewCenterXConstraint: NSLayoutConstraint!
 
-    @IBOutlet fileprivate weak var timeLabel: UILabel! 
+    @IBOutlet private weak var timeLabel: UILabel!
 
-    @IBOutlet fileprivate weak var voiceRecordButton: RecordButton!
-    @IBOutlet fileprivate weak var playButton: UIButton!
-    @IBOutlet fileprivate weak var resetButton: UIButton!
-    
-    enum State {
-        case reset // default
-        case recording
-        case recorded // readyPlay
-        case playing
-        case playPausing
-    }
-    
-    enum Input {
-        case record
-        case stop // 停止录音
-        case play
-        case pause
-        case reset
-    }
+    @IBOutlet private weak var voiceRecordButton: RecordButton!
+    @IBOutlet private weak var playButton: UIButton!
+    @IBOutlet private weak var resetButton: UIButton!
 
-    fileprivate var sampleValues: [CGFloat] = [] {
-        didSet {
-            let count = sampleValues.count
-            let frequency = 10
-            let minutes = count / frequency / 60
-            let seconds = count / frequency - minutes * 60
-            let subSeconds = count - seconds * frequency - minutes * 60 * frequency
+    private var sampleValues: Variable<[CGFloat]> = Variable([])
 
-            timeLabel.text = String(format: "%02d:%02d.%d", minutes, seconds, subSeconds)
-        }
-    }
-
-    fileprivate var audioPlaying: Bool = false {
-        willSet {
-            if newValue != audioPlaying {
-                if newValue {
-                    playButton.setImage(R.image.button_voice_pause(), for: .normal)
-                } else {
-                    playButton.setImage(R.image.button_voice_play(), for: .normal)
-                }
-            }
-        }
-    }
-
-    fileprivate var audioPlayedDuration: TimeInterval = 0 {
+    private var audioPlayedDuration: TimeInterval = 0 {
         willSet {
             guard newValue != audioPlayedDuration else {
                 return
@@ -88,7 +59,7 @@ final class NewFeedVoiceRecordViewController: UIViewController {
             let sampleStep: CGFloat = (4 + 2)
             let fullWidth = voiceRecordSampleView.bounds.width
 
-            let fullOffsetX = CGFloat(sampleValues.count) * sampleStep
+            let fullOffsetX = CGFloat(sampleValues.value.count) * sampleStep
 
             let currentOffsetX = CGFloat(newValue) * (10 * sampleStep)
 
@@ -101,7 +72,7 @@ final class NewFeedVoiceRecordViewController: UIViewController {
                     UIView.animate(withDuration: duration, delay: 0.0, options: .curveLinear, animations: { [weak self] in
                         self?.voiceIndicatorImageViewCenterXConstraint.constant = -fullWidth * 0.5 + 2 + currentOffsetX
                         self?.view.layoutIfNeeded()
-                    }, completion: { _ in })
+                    }, completion: nil)
 
                 } else {
                     voiceRecordSampleView.sampleCollectionView.setContentOffset(CGPoint(x: currentOffsetX - fullWidth * 0.5 , y: 0), animated: false)
@@ -111,80 +82,72 @@ final class NewFeedVoiceRecordViewController: UIViewController {
                 UIView.animate(withDuration: duration, delay: 0.0, options: .curveLinear, animations: { [weak self] in
                     self?.voiceIndicatorImageViewCenterXConstraint.constant = -fullWidth * 0.5 + 2 + currentOffsetX
                     self?.view.layoutIfNeeded()
-                }, completion: { _ in })
+                }, completion: nil)
             }
         }
     }
 
-    fileprivate var feedVoice: FeedVoice?
+    private var feedVoice: FeedVoice?
 
     deinit {
         print("deinit NewFeedVoiceRecord")
     }
-    
-    private var _automaton: Automaton<State, Input>?
+
     private let disposeBag = DisposeBag()
+
+    private enum State {
+        case reset, recording, recorded, playing, playPausing, canceled, playStopped
+    }
+
+    private enum Input {
+        case record, stop, play, pause, reset, cancel, playCompleted
+    }
+
+    private let mappings: [Automaton<State, Input>.NextMapping] = [
+    /*  Input          | fromState                                                 => toState       |  Effect */
+    /* ---------------------------------------------------------------------------------------------------------*/
+        .record        | (.reset                                                     => .recording)   | .empty(),
+        .stop          | (.recording                                                 => .recorded)    | .empty(),
+        .play          | ([.recorded, .playPausing, .playStopped].contains           => .playing)     | .empty(),
+        .pause         | (.playing                                                   => .playPausing) | .empty(),
+        .reset         | ([.recorded, .playing, .playPausing, .playStopped].contains => .reset)       | .empty(),
+        .cancel        | (allowAll                                                   => .canceled)    | .empty(),
+        .playCompleted | (.playing                                                   => .playStopped) | .empty()
+    ]
+    
+    private let (inputSignal, inputObserver) = Observable<Input>.pipe()
+    
+    private lazy var automaton: Automaton<State, Input> = Automaton(state: .reset, input: self.inputSignal, mapping: reduce(self.mappings), strategy: .latest)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // 如果进来前有声音在播放，令其停止
-        if let audioPlayer = YepAudioService.shared.audioPlayer , audioPlayer.isPlaying {
-            audioPlayer.pause()
-        } // TODO: delete
-
-        AudioBot.stopPlay()
-        
-        let mappings: [Automaton<State, Input>.NextMapping] = [
-        /*  Input   |   fromState                                   => toState       |  Effect */
-        /* ------------------------------------------------------------------------------------*/
-            .record | (.reset                                       => .recording)   | .empty(),
-            .stop   | (.recording                                   => .recorded)    | .empty(),
-            .play   | ([.recorded, .playPausing].contains           => .playing)     | .empty(),
-            .pause  | (.playing                                     => .playPausing) | .empty(),
-            .reset  | ([.recorded, .playing, .playPausing].contains => .reset)       | .empty()
-        ]
-
-        let (inputSignal, inputObserver) = Observable<Input>.pipe()
-        
-        let automaton = Automaton(state: .reset, input: inputSignal, mapping: reduce(mappings), strategy: .latest)
-        self._automaton = automaton
-        
-        automaton.replies
-            .subscribe(onNext: { (reply) in
-                print("received reply = \(reply)")
-                })
-            .addDisposableTo(disposeBag)
-        
-        automaton.state.asObservable()
-            .subscribe(onNext: { (state) in
-                print("current state: \(state)")
-                })
-            .addDisposableTo(disposeBag)
         
         do {
             Observable.from([
-                voiceRecordButton.rx.tap.withLatestFrom(automaton.state.asObservable()).map { (state) in
-                    switch state {
-                    case .recording:
-                        return Input.stop
-                    case .reset:
-                        return Input.record
-                    default:
-                        fatalError()
-                    }
+                voiceRecordButton.rx.tap.withLatestFrom(automaton.state.asObservable())
+                    .map { (state) in
+                        switch state {
+                        case .recording:
+                            return Input.stop
+                        case .reset:
+                            return Input.record
+                        default:
+                            fatalError()
+                        }
                 },
                 resetButton.rx.tap.map { Input.reset },
-                playButton.rx.tap.withLatestFrom(automaton.state.asObservable()).map { (state) in
-                    switch state {
-                    case .playing:
-                        return Input.pause
-                    case .playPausing, .recorded:
-                        return Input.play
-                    default:
-                        fatalError()
-                    }
+                playButton.rx.tap.withLatestFrom(automaton.state.asObservable())
+                    .map { (state) in
+                        switch state {
+                        case .playing:
+                            return Input.pause
+                        case .playPausing, .recorded, .playStopped:
+                            return Input.play
+                        default:
+                            fatalError()
+                        }
                 },
+                cancelButton.rx.tap.map { Input.cancel }
             ])
                 .merge()
                 .subscribe(onNext: inputObserver.onNext)
@@ -198,13 +161,11 @@ final class NewFeedVoiceRecordViewController: UIViewController {
                     switch state {
                     case .recording:
                         proposeToAccess(.microphone, agreed: {
-                            
                             do {
                                 let decibelSamplePeriodicReport: AudioBot.PeriodicReport = (reportingFrequency: 10, report: { decibelSample in
-                                    
                                     DispatchQueue.main.async {
                                         let value = CGFloat(decibelSample)
-                                        self.sampleValues.append(value)
+                                        self.sampleValues.value.append(value)
                                         self.voiceRecordSampleView.appendSampleValue(value: value)
                                     }
                                 })
@@ -232,8 +193,8 @@ final class NewFeedVoiceRecordViewController: UIViewController {
                     case .recorded:
                         AudioBot.stopRecord { fileURL, duration, decibelSamples in
                             guard duration > YepConfig.AudioRecord.shortestDuration else {
-                                YepAlert.alertSorry(message: NSLocalizedString("Voice recording time is too short!", comment: ""), inViewController: self, withDismissAction: {
-//                                    inputObserver.onNext(.reset)
+                                YepAlert.alertSorry(message: "Voice recording time is too short!", inViewController: self, withDismissAction: {
+                                    self.inputObserver.onNext(.reset)
                                     })
                                 return
                             }
@@ -281,16 +242,16 @@ final class NewFeedVoiceRecordViewController: UIViewController {
                                 
                                 self.audioPlayedDuration = 0
                                 
-//                                if success {
-//                                    self.state = .recorded
-//                                }
+                                if success {
+                                    self.inputObserver.onNext(.playCompleted)
+                                }
                                 })
                             
                             AudioBot.reportPlayingDuration = { duration in
                                 self.audioPlayedDuration = duration
                             }
                             
-                            self.audioPlaying = true
+                            self.playButton.setImage(R.image.button_voice_pause(), for: .normal)
                             
                         } catch let error {
                             print("AudioBot: \(error)")
@@ -303,9 +264,9 @@ final class NewFeedVoiceRecordViewController: UIViewController {
                             AudioBot.stopPlay()
                             
                             self.voiceRecordSampleView.reset()
-                            self.sampleValues = []
+                            self.sampleValues.value = []
                             
-                            self.audioPlaying = false
+                            self.playButton.setImage(R.image.button_voice_play(), for: .normal)
                             self.audioPlayedDuration = 0
                         }
                         
@@ -325,32 +286,31 @@ final class NewFeedVoiceRecordViewController: UIViewController {
                         self.view.layoutIfNeeded()
                     case .playPausing:
                         AudioBot.pausePlay()
+                        self.playButton.setImage(R.image.button_voice_play(), for: .normal)
+                    case .canceled:
+                        AudioBot.stopPlay()
+                        self.dismiss(animated: true) {
+                            AudioBot.stopRecord(empty())
+                        }
+                    case .playStopped:
+                        self.playButton.setImage(R.image.button_voice_play(), for: .normal)
                     }
                 })
                 .addDisposableTo(disposeBag)
+            
+            sampleValues.asObservable()
+                .map { $0.count }
+                .map { (count) -> String in
+                    let frequency = 10
+                    let minutes = count / frequency / 60
+                    let seconds = count / frequency - minutes * 60
+                    let subSeconds = count - seconds * frequency - minutes * 60 * frequency
+                    return String(format: "%02d:%02d.%d", minutes, seconds, subSeconds)
+                }
+                .bindTo(timeLabel.rx.text)
+                .addDisposableTo(disposeBag)
         }
         
-    }
-
-    // MARK: - Actions
-
-    @IBAction fileprivate func cancel(_ sender: UIBarButtonItem) {
-
-        AudioBot.stopPlay()
-
-        dismiss(animated: true) {
-            AudioBot.stopRecord { _, _, _ in
-            }
-        }
-    }
-
-    @IBAction fileprivate func next(_ sender: UIBarButtonItem) {
-
-        AudioBot.stopPlay()
-
-        if let feedVoice = feedVoice {
-//            performSegueWithIdentifier("showNewFeed", sender: Box(feedVoice))
-        }
     }
 
 }

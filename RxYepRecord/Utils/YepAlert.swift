@@ -28,7 +28,7 @@ final class YepAlert {
         }
     }
 
-    class func alertSorry(message: String?, inViewController viewController: UIViewController?, withDismissAction dismissAction: (() -> Void)) {
+    class func alertSorry(message: String?, inViewController viewController: UIViewController?, withDismissAction dismissAction: @escaping (() -> Void)) {
 
         alert(title: NSLocalizedString("Sorry", comment: ""), message: message, dismissTitle: NSLocalizedString("OK", comment: ""), inViewController: viewController, withDismissAction: dismissAction)
     }
@@ -185,7 +185,7 @@ extension UIViewController {
 //        }
 //    }
 
-    func showProposeMessageIfNeedForContactsAndTryPropose(propose: Propose) {
+    func showProposeMessageIfNeedForContactsAndTryPropose(propose: @escaping Propose) {
 
         if PrivateResource.contacts.isNotDeterminedAuthorization {
 

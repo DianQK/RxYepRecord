@@ -185,9 +185,9 @@ final class YepAudioService: NSObject {
     var playingFeedAudio: FeedAudio? {
         guard let playingItem = playingItem else { return nil }
 
-//        if case .FeedAudioType(let feedAUdio) = playingItem {
-//            return feedAUdio
-//        }
+        if case .feedAudioType(let feedAUdio) = playingItem {
+            return feedAUdio
+        }
 
         return nil
     }

@@ -22,7 +22,7 @@ class LocationDelegate: NSObject, CLLocationManagerDelegate {
     
     
     
-    init(locationUsage: PrivateResource.LocationUsage, successAction: ProposerAction, failureAction: ProposerAction) {
+    init(locationUsage: PrivateResource.LocationUsage, successAction: @escaping ProposerAction, failureAction: @escaping ProposerAction) {
         self.locationUsage = locationUsage
         self.successAction = successAction
         self.failureAction = failureAction
@@ -87,7 +87,7 @@ public enum PrivateResource {
         case .microphone:
             return AVAudioSession.sharedInstance().recordPermission() == .undetermined
         case .contacts:
-            return ABAddressBookGetAuthorizationStatus() == .notDetermined
+             return CNContactStore.authorizationStatus(for: CNEntityType.contacts) == .notDetermined
         case .reminders:
             return EKEventStore.authorizationStatus(for: .reminder) == .notDetermined
         case .calendar:
@@ -106,7 +106,7 @@ public enum PrivateResource {
         case .microphone:
             return AVAudioSession.sharedInstance().recordPermission() == .granted
         case .contacts:
-            return ABAddressBookGetAuthorizationStatus() == .authorized
+            return CNContactStore.authorizationStatus(for: CNEntityType.contacts) == .authorized
         case .reminders:
             return EKEventStore.authorizationStatus(for: .reminder) == .authorized
         case .calendar:
@@ -126,9 +126,9 @@ public typealias Propose = () -> Void
 
 public typealias ProposerAction = () -> Void
 
-public func proposeToAccess(_ resource: PrivateResource, agreed successAction: ProposerAction, rejected failureAction: ProposerAction) {
+public func proposeToAccess(_ resource: PrivateResource, agreed successAction: @escaping ProposerAction, rejected failureAction: @escaping ProposerAction) {
     
-    func proposeToAccessEvent(for entityYype: EKEntityType, agreed successAction: ProposerAction, rejected failureAction: ProposerAction) {
+    func proposeToAccessEvent(for entityYype: EKEntityType, agreed successAction: @escaping ProposerAction, rejected failureAction: @escaping ProposerAction) {
         
         switch EKEventStore.authorizationStatus(for: entityYype) {
         case .authorized:
@@ -157,7 +157,7 @@ public func proposeToAccess(_ resource: PrivateResource, agreed successAction: P
         proposeToAccessCamera(agreed: successAction, rejected: failureAction)
 
     case .microphone:
-        func proposeToAccessMicrophone(agreed successAction: ProposerAction, rejected failureAction: ProposerAction) {
+        func proposeToAccessMicrophone(agreed successAction: @escaping ProposerAction, rejected failureAction: @escaping ProposerAction) {
             AVAudioSession.sharedInstance().requestRecordPermission { granted in
                 DispatchQueue.main.async {
                     granted ? successAction() : failureAction()
@@ -227,7 +227,7 @@ public func proposeToAccess(_ resource: PrivateResource, agreed successAction: P
     }
 }
 
-private func proposeToAccessPhotos(agreed successAction: ProposerAction, rejected failureAction: ProposerAction) {
+private func proposeToAccessPhotos(agreed successAction: @escaping ProposerAction, rejected failureAction: @escaping ProposerAction) {
     PHPhotoLibrary.requestAuthorization { status in
         DispatchQueue.main.async {
             switch status {
@@ -240,7 +240,7 @@ private func proposeToAccessPhotos(agreed successAction: ProposerAction, rejecte
     }
 }
 
-private func proposeToAccessCamera(agreed successAction: ProposerAction, rejected failureAction: ProposerAction) {
+private func proposeToAccessCamera(agreed successAction: @escaping ProposerAction, rejected failureAction: @escaping ProposerAction) {
     AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { granted in
         DispatchQueue.main.async {
             granted ? successAction() : failureAction()
@@ -248,7 +248,7 @@ private func proposeToAccessCamera(agreed successAction: ProposerAction, rejecte
     }
 
 
-func proposeToAccessMicrophone(agreed successAction: ProposerAction, rejected failureAction: ProposerAction) {
+func proposeToAccessMicrophone(agreed successAction: @escaping ProposerAction, rejected failureAction: @escaping ProposerAction) {
     AVAudioSession.sharedInstance().requestRecordPermission { granted in
         DispatchQueue.main.async {
             granted ? successAction() : failureAction()

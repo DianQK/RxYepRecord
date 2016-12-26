@@ -281,7 +281,7 @@ public extension AudioBot {
 
 public extension AudioBot {
 
-    public class func startPlayAudioAtFileURL(_ fileURL: URL, fromTime: TimeInterval, withProgressPeriodicReport progressPeriodicReport: PeriodicReport, finish: ((Bool) -> Void)) throws {
+    public class func startPlayAudioAtFileURL(_ fileURL: URL, fromTime: TimeInterval, withProgressPeriodicReport progressPeriodicReport: PeriodicReport, finish: @escaping ((Bool) -> Void)) throws {
 
         stopRecord { _, _, _ in }
 

@@ -2,7 +2,7 @@
 //  SafeCollection.swift
 //  Expandable
 //
-//  Created by 宋宋 on 8/18/16.
+//  Created by DianQK on 8/18/16.
 //  Copyright © 2016 T. All rights reserved.
 //
 

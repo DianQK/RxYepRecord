@@ -26,39 +26,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 8 images.
+  /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
-    /// Image `bubble_body`.
-    static let bubble_body = ImageResource(bundle: _R.hostingBundle, name: "bubble_body")
-    /// Image `bubble_left_tail`.
-    static let bubble_left_tail = ImageResource(bundle: _R.hostingBundle, name: "bubble_left_tail")
-    /// Image `bubble_right_tail`.
-    static let bubble_right_tail = ImageResource(bundle: _R.hostingBundle, name: "bubble_right_tail")
     /// Image `button_voice_pause`.
     static let button_voice_pause = ImageResource(bundle: _R.hostingBundle, name: "button_voice_pause")
     /// Image `button_voice_play`.
     static let button_voice_play = ImageResource(bundle: _R.hostingBundle, name: "button_voice_play")
     /// Image `button_voice_reset`.
     static let button_voice_reset = ImageResource(bundle: _R.hostingBundle, name: "button_voice_reset")
-    /// Image `feed_audio_bubble`.
-    static let feed_audio_bubble = ImageResource(bundle: _R.hostingBundle, name: "feed_audio_bubble")
     /// Image `voice_indicator`.
     static let voice_indicator = ImageResource(bundle: _R.hostingBundle, name: "voice_indicator")
-    
-    /// `UIImage(named: "bubble_body", bundle: ..., traitCollection: ...)`
-    static func bubble_body(compatibleWith traitCollection: UITraitCollection? = nil) -> UIImage? {
-      return UIImage(resource: R.image.bubble_body, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "bubble_left_tail", bundle: ..., traitCollection: ...)`
-    static func bubble_left_tail(compatibleWith traitCollection: UITraitCollection? = nil) -> UIImage? {
-      return UIImage(resource: R.image.bubble_left_tail, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "bubble_right_tail", bundle: ..., traitCollection: ...)`
-    static func bubble_right_tail(compatibleWith traitCollection: UITraitCollection? = nil) -> UIImage? {
-      return UIImage(resource: R.image.bubble_right_tail, compatibleWith: traitCollection)
-    }
     
     /// `UIImage(named: "button_voice_pause", bundle: ..., traitCollection: ...)`
     static func button_voice_pause(compatibleWith traitCollection: UITraitCollection? = nil) -> UIImage? {
@@ -73,11 +50,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "button_voice_reset", bundle: ..., traitCollection: ...)`
     static func button_voice_reset(compatibleWith traitCollection: UITraitCollection? = nil) -> UIImage? {
       return UIImage(resource: R.image.button_voice_reset, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "feed_audio_bubble", bundle: ..., traitCollection: ...)`
-    static func feed_audio_bubble(compatibleWith traitCollection: UITraitCollection? = nil) -> UIImage? {
-      return UIImage(resource: R.image.feed_audio_bubble, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "voice_indicator", bundle: ..., traitCollection: ...)`

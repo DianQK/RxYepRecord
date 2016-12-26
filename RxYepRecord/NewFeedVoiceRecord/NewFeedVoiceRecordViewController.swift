@@ -104,7 +104,7 @@ final class NewFeedVoiceRecordViewController: UIViewController {
     }
 
     private let mappings: [Automaton<State, Input>.NextMapping] = [
-    /*  Input          | fromState                                                 => toState       |  Effect */
+    /*  Input          | fromState                                                   => toState       |  Effect */
     /* ---------------------------------------------------------------------------------------------------------*/
         .record        | (.reset                                                     => .recording)   | .empty(),
         .stop          | (.recording                                                 => .recorded)    | .empty(),
@@ -148,9 +148,9 @@ final class NewFeedVoiceRecordViewController: UIViewController {
                         }
                 },
                 cancelButton.rx.tap.map { Input.cancel }
-            ])
+                ])
                 .merge()
-                .subscribe(onNext: inputObserver.onNext)
+                .bindTo(inputObserver)
                 .addDisposableTo(disposeBag)
         }
         

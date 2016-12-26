@@ -73,7 +73,6 @@ final class NewFeedVoiceRecordViewController: UIViewController {
                         self?.voiceIndicatorImageViewCenterXConstraint.constant = -fullWidth * 0.5 + 2 + currentOffsetX
                         self?.view.layoutIfNeeded()
                     }, completion: nil)
-
                 } else {
                     voiceRecordSampleView.sampleCollectionView.setContentOffset(CGPoint(x: currentOffsetX - fullWidth * 0.5 , y: 0), animated: false)
                 }
@@ -107,12 +106,12 @@ final class NewFeedVoiceRecordViewController: UIViewController {
     /*  Input          | fromState                                                   => toState       |  Effect */
     /* ---------------------------------------------------------------------------------------------------------*/
         .record        | (.reset                                                     => .recording)   | .empty(),
-        .stop          | (.recording                                                 => .recorded)    | .empty(),
+        .stop   /* stopRecording */     | (.recording                                                 => .recorded)    | .empty(),
         .play          | ([.recorded, .playPausing, .playStopped].contains           => .playing)     | .empty(),
-        .pause         | (.playing                                                   => .playPausing) | .empty(),
+        .pause  /* pausePlaying */        | (.playing                                                   => .playPausing) | .empty(), // 这里不是 empty ，有一个自动转换，从 playing => playStopped
         .reset         | ([.recorded, .playing, .playPausing, .playStopped].contains => .reset)       | .empty(),
-        .cancel        | (allowAll                                                   => .canceled)    | .empty(),
-        .playCompleted | (.playing                                                   => .playStopped) | .empty()
+        .cancel /* 移除 cancel */    | (allowAll                                                   => .canceled)    | .empty(),
+        .playCompleted  /* stopPlaying */ | (.playing                                                   => .playStopped) | .empty() // 当然从 playing -> playStopped 也可以手动停止
     ]
     
     private let (inputSignal, inputObserver) = Observable<Input>.pipe()
